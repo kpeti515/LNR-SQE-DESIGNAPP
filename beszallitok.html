@@ -14,89 +14,114 @@
     <link rel="stylesheet" type="text/css" href="CSS/bootstrap-grid.min.css" />
     <link rel="stylesheet" type="text/css" href="CSS/bootstrap.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-    <link rel="stylesheet" href="node_modules/mdbootstrap/css/mdb.min.css">
-    <link rel="stylesheet" href="node_modules/mdbootstrap/css/style.css">
-
+    <link rel="stylesheet" href="node_modules/mdbootstrap/css/mdb.min.css"/>
     <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
- 
     <script type="text/javascript" src="DataTables/datatables.min.js"></script>
     
     
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-            <!-- Brand -->
-            <a class="navbar-brand" href="index.html">
-                <img src="pics/LinamarLogo.png" class="img-fluid" style="max-width: 150px" alt="Responsive image">
+  <header>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">
+            <img src="pics/LinamarLogo.png" class="img-fluid" style="max-width: 150px" alt="Responsive image">
+        </a>
+      
+        <!-- Links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="beszallitok.html">Beszállítók</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="tanusitvanyok.html">Tanusítványok</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="psw.html">PSW-k</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="ppap.html">PPAP-ok</a>
+          </li>
+                   
+          <!-- Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+              Határidős feladatok
             </a>
-          
-            <!-- Links -->
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" href="beszallitok.html">Beszállítók</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="tanusitvanyok.html">Tanusítványok</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="psw.html">PSW-k</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="ppap.html">PPAP-ok</a>
-              </li>
-                       
-              <!-- Dropdown -->
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                  Határidős feladatok
-                </a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="docs.html">Hamarosan lejáró dokumentumok</a>
-                  <a class="dropdown-item" href="actionplans.html">Action planek</a>
-                  <a class="dropdown-item" href="meetingminutes.html">Meeting minutes</a>
-                </div>
-              </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
-          </nav>
-    </header>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="docs.html">Hamarosan lejáró dokumentumok</a>
+                <a class="dropdown-item" href="actionplans.html">Action planek</a>
+                <a class="dropdown-item" href="meetingminutes.html">Meeting minutes</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+</header>
       <script>$(document).ready(function() {
-        $('#contacts').DataTable( {
-          language: {
-        processing:     "Feldolgozás..",
-        search:         "Keresés&nbsp;:",
-        lengthMenu:    "_MENU_ találat oldalanként",
-        info:           "Találatok: _START_ - _END_ Összesen: _TOTAL_",
-        infoEmpty:      "Nulla találat",
-        infoFiltered:   "(_MAX_ összes rekord közül szűrve)",
-        infoPostFix:    "",
-        loadingRecords: "Betöltés...",
-        zeroRecords:    "Nincs a keresésnek megfelelő találat",
-        emptyTable:     "Nincs rendelkezésre álló adat",
-        paginate: {
-            first:      "Első",
-            previous:   "Előző",
-            next:       "Következő",
-            last:       "Utolsó"
-        },
-          },
-            columnDefs: [ {
-                targets: [ 0 ],
-                orderData: [ 0, 1 ]
-            }, {
-                targets: [ 1 ],
-                orderData: [ 1, 0 ]
-            }, {
-                targets: [ 4 ],
-                orderData: [ 4, 0 ]
-            } ]
+        // Setup - add a text input to each footer cell
+        $('#contacts thead tr').clone(true).appendTo( '#contacts thead' );
+        $('#contacts thead tr:eq(1) th').each( function (i) {
+            var title = $(this).text();
+            $(this).html( '<input type="text" placeholder=" '+title+' keresése" />' );
+     
+            $( 'input', this ).on( 'keyup change', function () {
+                if ( table.column(i).search() !== this.value ) {
+                    table
+                        .column(i)
+                        .search( this.value )
+                        .draw();
+                }
+            } );
         } );
-    } );;</script>
-      <table id="contacts" class="display tg table table-hover table-bordered">
+     
+        var table = $('#contacts').DataTable( {
+            orderCellsTop: true,
+            fixedHeader: true,
+            language: {
+              sEmptyTable: "Nincs rendelkezésre álló adat",
+              sInfo: "Találatok: _START_ - _END_ Összesen: _TOTAL_",
+              sInfoEmpty: "Nulla találat",
+              sInfoFiltered: "(_MAX_ összes rekord közül szűrve)",
+              sInfoPostFix: "",
+              sInfoThousands: " ",
+              sLengthMenu: "_MENU_ találat oldalanként",
+              sLoadingRecords: "Betöltés...",
+              sProcessing: "Feldolgozás...",
+              sSearch: "Keresés:",
+              sZeroRecords: "Nincs a keresésnek megfelelő találat",
+              oPaginate: {
+                  sFirst: "Első",
+                  sPrevious: "Előző",
+                  sNext: "Következő",
+                  sLast: "Utolsó"
+              },
+              oAria: {
+                  sSortAscending: ": aktiválja a növekvő rendezéshez",
+                  sSortDescending: ": aktiválja a csökkenő rendezéshez"
+              },
+              select: {
+                  rows: {
+                      _: "%d sor kiválasztva",
+                      0: "",
+                      1: "1 sor kiválasztva"
+                  }
+              },
+              buttons: {
+                  print: "Nyomtatás",
+                  colvis: "Oszlopok",
+                  copy: "Másolás",
+                  copyTitle: "Vágólapra másolás",
+                  copySuccess: {
+                      _: "%d sor másolva",
+                      1: "1 sor másolva"
+                  }
+              }
+
+            }
+        } );
+    } );
+    </script>
+      <table id="contacts" class="display tg table table-hover table-bordered" style="width:100%">
   <thead>
   <tr class="header">
     <th scope="col">Beszállító</th>
@@ -138,38 +163,6 @@
     <td>Supplier Developement + SQE</td>
     <td><a href="tel:+82-10-2998-3715">+82 10 2998 3715</td>
     <td><a href="mailto:suahn@parkstar.kr">suahn@parkstar.kr</a></td>
-  </tr>
-  <tr>
-    <td>AAPICO</td>
-    <td>Magna, VW</td>
-    <td>Raquel Saraiva</td>
-    <td>Be</td>
-    <td>Tel</td>
-    <td>Em</td>
-  </tr>
-  <tr>
-    <td>AAPICO</td>
-    <td>Magna, VW</td>
-    <td>Raquel Saraiva</td>
-    <td>Be</td>
-    <td>Tel</td>
-    <td>Em</td>
-  </tr>
-  <tr>
-    <td>AAPICO</td>
-    <td>Magna, VW</td>
-    <td>Raquel Saraiva</td>
-    <td>Be</td>
-    <td>Tel</td>
-    <td>Em</td>
-  </tr>
-  <tr>
-    <td>AAPICO</td>
-    <td>Magna, VW</td>
-    <td>Diogo Sá</td>
-    <td>Be</td>
-    <td>Tel</td>
-    <td>Em</td>
   </tr>
 </table>
 
