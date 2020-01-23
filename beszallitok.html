@@ -12,7 +12,7 @@
     <script type="text/javascript" src="node_modules/mdbootstrap/js/popper.min.js"></script>
     <script type="text/javascript" src="node_modules/mdbootstrap/js/mdb.min.js"></script>
     <script type="text/javascript" src="DataTables/datatables.min.js"></script>
-    <script type="text/javascript" src="extensions/editable/bootstrap-table-editable.js"></script>
+    <script type="text/javascript" src="node_modules/mdbootstrap/js/addons/bootstrap-table-editable.js"></script>
 
     <!-- <link rel="stylesheet" type="text/css" href="CSS/bootstrap-grid.min.css" /> -->
     <link rel="stylesheet" type="text/css" href="node_modules/mdbootstrap/css/bootstrap.min.css" />
@@ -170,7 +170,6 @@
 <script>
 $(document).ready(function () {
 $('#dtBasicExample').DataTable();
-$('.dataTables_length').addClass('bs-select');
 $('#dtBasicExample').mdbEditor({
   headerLength: 6,
 evenTextColor: '#000',
