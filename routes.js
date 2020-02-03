@@ -5,9 +5,10 @@ const router = express.Router()
 axios.defaults.baseURL = 'http://localhost:3000/' // TODO: only for dev purposes
 
 // App Routes
-router.get('/', (req, res) => {
-  res.render('index')
-})
+
+router.get('/', (req, res) => res.render('index'))
+
+router.get('/actionplans', (req, res) => res.render('actionplans'))
 
 router.get('/beszallitok', async (req, res) => {
   try {
@@ -19,6 +20,11 @@ router.get('/beszallitok', async (req, res) => {
   }
 })
 
+router.get('/ppap', (req, res) => res.render('ppap'))
+router.get('/psw', (req, res) => res.render('psw'))
+router.get('/tanusitvanyok', (req, res) => res.render('tanusitvanyok'))
+
+// TODO: move it to the client's codebase
 router.post('/contacts', async (req, res) => {
   const requestData = req.body
   const result = await axios.post('/api/contacts', requestData)
