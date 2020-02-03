@@ -12,8 +12,8 @@
       <script type="text/javascript" src="node_modules/mdbootstrap/js/bootstrap.min.js"></script>
       <script type="text/javascript" src="node_modules/mdbootstrap/js/popper.min.js"></script>
       <script type="text/javascript" src="node_modules/mdbootstrap/js/mdb.min.js"></script>
-      <script type="text/javascript" src="DataTables/datatables.min.js"></script>
-  
+      <script type="text/javascript" src="js/DataTables/datatables.min.js"></script>
+
       <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
       <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -21,14 +21,14 @@
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
       <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
       <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
-  
+
       <!-- <link rel="stylesheet" type="text/css" href="CSS/bootstrap-grid.min.css" /> -->
       <link rel="stylesheet" type="text/css" href="node_modules/mdbootstrap/css/bootstrap.min.css" />
       <link rel="stylesheet" type="text/css" href="node_modules/mdbootstrap/css/mdb.min.css"/>
       <link rel="stylesheet" type="text/css" href="node_modules/mdbootstrap/css/addons/datatables.min.css"/>
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css"/>
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">    
-      
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+
   </head>
   <body>
     <header>
@@ -37,7 +37,7 @@
           <a class="navbar-brand" href="#">
               <img src="img/LinamarLogo.png" class="img-fluid" style="max-width: 150px" alt="Responsive image">
           </a>
-        
+
           <!-- Links -->
           <ul class="navbar-nav">
             <li class="nav-item">
@@ -52,7 +52,7 @@
             <li class="nav-item">
               <a class="nav-link" href="ppap.html">PPAP-ok</a>
             </li>
-                     
+
             <!-- Dropdown -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -72,9 +72,9 @@
           // Setup - add a text input to each footer cell
           $('#contacts thead tr').clone(true).appendTo( '#contacts thead' );
           $('#contacts thead tr:eq(1) th').each( function (i) {
-          
+
           } );
-       
+
           var table = $('#contacts').DataTable( {
               orderCellsTop: true,
               fixedHeader: true,
@@ -88,18 +88,18 @@
                       var val = $.fn.dataTable.util.escapeRegex(
                           $(this).val()
                       );
-   
+
                       column
                           .search(val ? '^' + val + '$' : '', true, false)
                           .draw();
                   });
-   
+
               column.data().unique().sort().each(function (d, j) {
                   select.append('<option value="' + d + '">' + d + '</option>')
               });
           });
       },
-  
+
               buttons: [
               'excel', 'pdf', 'print'
               ],
@@ -132,7 +132,7 @@
                         1: "1 sor kiválasztva"
                     }
                 },
-                
+
                 buttons: {
                     print: "Nyomtatás",
                     extend: 'excel',
@@ -154,7 +154,7 @@
           } );
           $(".buttons-excel, .buttons-pdf, .buttons-print").removeClass("btn-secondary").addClass("btn-success");
       } );
-      
+
       </script>
         <table id="contacts" class="display tg table table-hover table-bordered" style="width:100%">
     <thead>
@@ -200,7 +200,7 @@
       <td><a href="mailto:suahn@parkstar.kr">suahn@parkstar.kr</a></td>
     </tr>
   </table>
-  
+
   <ul class="Contacts">
     <% for(var i=0; i<Contacts.length; i++) {%>
       <li class="Contact">
@@ -209,7 +209,7 @@
       </li>
     <% } %>
   </ul>
-  
+
   <form action="/contacts" method="post">
         <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
         aria-hidden="true">
@@ -227,37 +227,37 @@
                 <input type="text" id="form34" name="Supplier" class="form-control validate">
                 <label data-error="wrong" data-success="right" for="form34">Beszállító</label>
               </div>
-  
+
               <div class="md-form mb-5">
                 <i class="fas fa-project-diagram prefix grey-text"></i>
                 <input type="text" id="form34" name="Project" class="form-control validate">
                 <label data-error="wrong" data-success="right" for="form34">Projekt</label>
               </div>
-      
+
               <div class="md-form mb-5">
                 <i class="fas fa-user prefix grey-text"></i>
                 <input type="text" id="form34" name="ContactName" class="form-control validate">
                 <label data-error="wrong" data-success="right" for="form34">Kontakt név</label>
               </div>
-  
+
               <div class="md-form mb-5">
                 <i class="fas fa-user-graduate prefix grey-text"></i>
                 <input type="text" id="form34" name="Position" class="form-control validate">
                 <label data-error="wrong" data-success="right" for="form34">Beosztás</label>
               </div>
-      
+
               <div class="md-form mb-5">
                 <i class="fas fa-phone-alt prefix grey-text"></i>
                 <input type="tel" id="form32" name="PhoneNumber" class="form-control validate">
                 <label data-error="wrong" data-success="right" for="form32">Telefonszám</label>
               </div>
-      
+
               <div class="md-form mb-5">
                 <i class="fas fa-envelope prefix grey-text"></i>
                 <input type="email" id="form29" name="email" class="form-control validate">
                 <label data-error="wrong" data-success="right" for="form29">E-mail</label>
               </div>
-      
+
             </div>
             <div class="modal-footer d-flex justify-content-center">
               <button type="submit" class="btn btn-success">Mentés <i class="fas fa-paper-plane-o ml-1"></i></button>
@@ -273,16 +273,16 @@
           }
           </script>
         <button class="btn btn-primary btn-lg" role="button" aria-pressed="true" data-toggle="modal" data-target="#modalContactForm">Új kontakt hozzáadása</button>
-      
-  
+
+
         <a href="#" class="btn btn-primary btn-lg btn-warning" role="button" aria-pressed="true">Kontakt módosítása</a>
         <a href="#" class="btn btn-primary btn-lg btn-danger" role="button" aria-pressed="true">Kontakt törlése</a>
-     
-  
+
+
       <footer id="footer" class="container-fluid bg-light">
           <div class="row">
-              <p>Linamar PPM</p>  
-          
+              <p>Linamar PPM</p>
+
            </div>
       </footer>
   </body>

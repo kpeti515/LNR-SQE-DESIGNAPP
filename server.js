@@ -2,10 +2,10 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 
-var dbo
+let dbo
 
-var MongoClient = require('mongodb').MongoClient
-var url = 'mongodb+srv://Kpeti515:P2peters@backendtest-sxxo1.mongodb.net/test?retryWrites=true&w=majority'
+const MongoClient = require('mongodb').MongoClient
+const url = 'mongodb+srv://Kpeti515:P2peters@backendtest-sxxo1.mongodb.net/test?retryWrites=true&w=majority'
 const client = new MongoClient(url, { useUnifiedTopology: true })
 client.connect().then((client) => {
   dbo = client.db('SupplierQualityEngineer')
@@ -19,6 +19,7 @@ console.log('May Node be with you')
 
 app.set('view engine', 'ejs')
 
+app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
