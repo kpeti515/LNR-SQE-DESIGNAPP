@@ -17,6 +17,7 @@ const start = async () => {
     app.set('view engine', 'ejs')
     app.use(express.static('public'))
     app.use(bodyParser.urlencoded({ extended: true }))
+    app.use(bodyParser.json())
     app.use('/', routes)
     app.use('/api', api({ db }))
     app.listen(3000, () => console.log('listening on port: 3000'))

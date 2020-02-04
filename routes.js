@@ -13,7 +13,7 @@ router.get('/actionplans', (req, res) => res.render('actionplans'))
 router.get('/beszallitok', async (req, res) => {
   try {
     const result = await axios.get('/api/contacts')
-    const viewData = { Contacts: result }
+    const viewData = { Contacts: result.data }
     res.render('beszallitok', viewData)
   } catch (error) {
     res.status(500).send(error)
@@ -26,8 +26,7 @@ router.get('/tanusitvanyok', (req, res) => res.render('tanusitvanyok'))
 
 // TODO: move it to the client's codebase
 router.post('/contacts', async (req, res) => {
-  const requestData = req.body
-  const result = await axios.post('/api/contacts', requestData)
+  const result = await axios.post('/api/contacts', req.body)
   console.log(result)
   res.redirect('/')
 })
