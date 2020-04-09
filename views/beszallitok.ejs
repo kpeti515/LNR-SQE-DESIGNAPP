@@ -8,27 +8,20 @@
       <meta name="keywords" content="html,html5,web development" />
       <title>PPM Supplier Quality Database</title>
       <link rel="icon" href="img/favicon.ico" />
-      <script type="text/javascript" src="js/jquery.min.js"></script>
-      <script type="text/javascript" src="js/bootstrap.min.js"></script>
-      <script type="text/javascript" src="js/popper.min.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.12.0/js/mdb.min.js"></script>
-      <script type="text/javascript" src="js/DataTables/datatables.min.js"></script>
 
-      <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
-      <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+      <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>      
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>      <script type="text/javascript" src="js/DataTables/datatables.min.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+      <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
       <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
       <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+      <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
 
-      <!-- <link rel="stylesheet" type="text/css" href="CSS/bootstrap-grid.min.css" /> -->
-      <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.12.0/css/mdb.min.css" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="css/addons/datatables.min.css"/>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css"/>
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-
   </head>
   <body>
     <header>
@@ -69,146 +62,133 @@
   </header>
         <script>
         $(document).ready(function() {
-          // Setup - add a text input to each footer cell
-          $('#contacts thead tr').clone(true).appendTo( '#contacts thead' );
-          $('#contacts thead tr:eq(1) th').each( function (i) {
-
-          } );
-
           var table = $('#contacts').DataTable( {
               orderCellsTop: true,
               fixedHeader: true,
+              pagingType: "full_numbers",
               dom: 'lBfrtip',
+              "ajax": {
+                "url":'/api/contacts',
+                "dataSrc": ""},
+                
+              columns: [
+                        {
+                          "data": "Supplier"
+                        },
+                        {
+                          "data": "Project"
+                        },
+                        {
+                          "data": "ContactName"
+                        },
+                        {
+                          "data": "Position"
+                        },
+                        {
+                          "data": "PhoneNumber"
+                        },
+                        {
+                          "data": "email"
+                        }
+                      ],
               initComplete: function () {
-          this.api().columns().every(function () {
-              var column = this;
+              this.api().columns().every(function () {
+              var column = this
               var select = $('<select><option value=""></option></select>')
                   .appendTo($(column.footer()).empty())
                   .on('change', function () {
                       var val = $.fn.dataTable.util.escapeRegex(
                           $(this).val()
-                      );
+                      )
 
                       column
                           .search(val ? '^' + val + '$' : '', true, false)
-                          .draw();
-                  });
+                          .draw()
+                  })
 
               column.data().unique().sort().each(function (d, j) {
                   select.append('<option value="' + d + '">' + d + '</option>')
-              });
-          });
-      },
+              })
+          })
+              },
+              language: {
+              sEmptyTable: "Nincs rendelkezésre álló adat",
+              sInfo: "Találatok: _START_ - _END_ Összesen: _TOTAL_",
+              sInfoEmpty: "Nulla találat",
+              sInfoFiltered: "(_MAX_ összes rekord közül szűrve)",
+              sInfoPostFix: "",
+              sInfoThousands: " ",
+              sLengthMenu: "_MENU_ találat oldalanként",
+              sLoadingRecords: "Betöltés...",
+              sProcessing: "Feldolgozás...",
+              sSearch: "Keresés:",
+              sZeroRecords: "Nincs a keresésnek megfelelő találat",
+              oPaginate: {
+                  sFirst: "Első",
+                  sPrevious: "Előző",
+                  sNext: "Következő",
+                  sLast: "Utolsó"
+              },
+              oAria: {
+                  sSortAscending: ": aktiválja a növekvő rendezéshez",
+                  sSortDescending: ": aktiválja a csökkenő rendezéshez"
+              },
+              select: {
+                  rows: {
+                      _: "%d sor kiválasztva",
+                      0: "",
+                      1: "1 sor kiválasztva"
+                  }
+              },
 
+              buttons: {
+                  print: "Nyomtatás",
+                  extend: 'excel',
+                  text: 'Save current page',
+                  exportOptions: {
+                  modifier: {
+                    page: 'current'
+                    }
+                  },
+                  colvis: "Oszlopok",
+                  copy: "Másolás",
+                  copyTitle: "Vágólapra másolás",
+                  copySuccess: {
+                      _: "%d sor másolva",
+                      1: "1 sor másolva"
+                  }
+              }
+            },
               buttons: [
               'excel', 'pdf', 'print'
-              ],
-              language: {
-                sEmptyTable: "Nincs rendelkezésre álló adat",
-                sInfo: "Találatok: _START_ - _END_ Összesen: _TOTAL_",
-                sInfoEmpty: "Nulla találat",
-                sInfoFiltered: "(_MAX_ összes rekord közül szűrve)",
-                sInfoPostFix: "",
-                sInfoThousands: " ",
-                sLengthMenu: "_MENU_ találat oldalanként",
-                sLoadingRecords: "Betöltés...",
-                sProcessing: "Feldolgozás...",
-                sSearch: "Keresés:",
-                sZeroRecords: "Nincs a keresésnek megfelelő találat",
-                oPaginate: {
-                    sFirst: "Első",
-                    sPrevious: "Előző",
-                    sNext: "Következő",
-                    sLast: "Utolsó"
-                },
-                oAria: {
-                    sSortAscending: ": aktiválja a növekvő rendezéshez",
-                    sSortDescending: ": aktiválja a csökkenő rendezéshez"
-                },
-                select: {
-                    rows: {
-                        _: "%d sor kiválasztva",
-                        0: "",
-                        1: "1 sor kiválasztva"
-                    }
-                },
-
-                buttons: {
-                    print: "Nyomtatás",
-                    extend: 'excel',
-                    text: 'Save current page',
-                    exportOptions: {
-                    modifier: {
-                      page: 'current'
-                      }
-                    },
-                    colvis: "Oszlopok",
-                    copy: "Másolás",
-                    copyTitle: "Vágólapra másolás",
-                    copySuccess: {
-                        _: "%d sor másolva",
-                        1: "1 sor másolva"
-                    }
-                }
-              }
-          } );
-          $(".buttons-excel, .buttons-pdf, .buttons-print").removeClass("btn-secondary").addClass("btn-success");
-      } );
-
+              ]
+          })
+          $(".buttons-excel, .buttons-pdf, .buttons-print").removeClass("btn-secondary").addClass("btn-success")
+          $('div#contacts_filter').find('LABEL').attr('style', 'display:flex;');
+        })
       </script>
         <table id="contacts" class="display tg table table-hover table-bordered" style="width:100%">
-    <thead>
-    <tr class="header">
-      <th scope="col">Beszállító</th>
-      <th scope="col">Projekt</th>
-      <th scope="col">Kontakt név</th>
-      <th scope="col">Beosztás</th>
-      <th scope="col">Telefonszám</th>
-      <th scope="col">E-mail</th>
-    </tr>
-    </thead>
-    <tr>
-      <td>AAPICO</td>
-      <td>Magna, VW</td>
-      <td>Raquel Saraiva</td>
-      <td>Quality Engineer</td>
-      <td><a href="tel:+351-935-030-658">+351 935 030 658</a></td>
-      <td><a href="mailto:raquel.saraiva@sakthiportugal.pt">raquel.saraiva@sakthiportugal.pt</a></td>
-    </tr>
-    <tr>
-      <td>AAPICO</td>
-      <td>Magna, VW</td>
-      <td>Diogo Sá</td>
-      <td>Product Development Engineer</td>
-      <td><a href="tel:+351-934-044-634">+351 934 044 634</a></td>
-      <td><a href="mailto:diogo.sa@sakthiportugal.pt">diogo.sa@sakthiportugal.pt</a></td>
-    </tr>
-    <tr>
-      <td>Geoyang</td>
-      <td>Magna</td>
-      <td>John Park</td>
-      <td>Parkstar Managing Director</td>
-      <td><a href="tel:+82-10-7488-5468">+82 10 7488 5468</td>
-      <td><a href="mailto:johnpark@parkstar.kr">johnpark@parkstar.kr</a></td>
-    </tr>
-    <tr>
-      <td>Geoyang</td>
-      <td>Magna</td>
-      <td>Su Ahn</td>
-      <td>Supplier Developement + SQE</td>
-      <td><a href="tel:+82-10-2998-3715">+82 10 2998 3715</td>
-      <td><a href="mailto:suahn@parkstar.kr">suahn@parkstar.kr</a></td>
-    </tr>
-  </table>
-
-  <ul class="Contacts">
-    <% for(var i=0; i<Contacts.length; i++) {%>
-      <li class="Contact">
-        <span><%= Contacts[i].Supplier %></span>
-        <span><%= Contacts[i].Project %></span>
-      </li>
-    <% } %>
-  </ul>
+          <thead>
+            <tr>
+              <th>Beszállító</th>
+              <th>Projekt</th>
+              <th>Kontakt név</th>
+              <th>Beosztás</th>
+              <th>Telefonszám</th>
+              <th>E-mail</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>Beszállító</th>
+              <th>Projekt</th>
+              <th>Kontakt név</th>
+              <th>Beosztás</th>
+              <th>Telefonszám</th>
+              <th>E-mail</th>
+            </tr>
+          </tfoot>
+        </table>
 
   <form action="/contacts" method="post">
         <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -224,40 +204,34 @@
             <div class="modal-body mx-3">
               <div class="md-form mb-5">
                 <i class="fas fa-building prefix grey-text"></i>
-                <input type="text" id="form34" name="Supplier" class="form-control validate">
-                <label data-error="wrong" data-success="right" for="form34">Beszállító</label>
+                <input type="text" id="form31" name="Supplier" class="form-control" required>
+                <label data-error="wrong" data-success="right" for="form31">Beszállító</label>
               </div>
-
               <div class="md-form mb-5">
                 <i class="fas fa-project-diagram prefix grey-text"></i>
-                <input type="text" id="form34" name="Project" class="form-control validate">
-                <label data-error="wrong" data-success="right" for="form34">Projekt</label>
+                <input type="text" id="form32" name="Project" class="form-control" required>
+                <label data-error="wrong" data-success="right" for="form32">Projekt</label>
               </div>
-
               <div class="md-form mb-5">
                 <i class="fas fa-user prefix grey-text"></i>
-                <input type="text" id="form34" name="ContactName" class="form-control validate">
-                <label data-error="wrong" data-success="right" for="form34">Kontakt név</label>
+                <input type="text" id="form33" name="ContactName" class="form-control" required>
+                <label data-error="wrong" data-success="right" for="form33">Kontakt név</label>
               </div>
-
               <div class="md-form mb-5">
                 <i class="fas fa-user-graduate prefix grey-text"></i>
-                <input type="text" id="form34" name="Position" class="form-control validate">
+                <input type="text" id="form34" name="Position" class="form-control" required>
                 <label data-error="wrong" data-success="right" for="form34">Beosztás</label>
               </div>
-
               <div class="md-form mb-5">
                 <i class="fas fa-phone-alt prefix grey-text"></i>
-                <input type="tel" id="form32" name="PhoneNumber" class="form-control validate">
-                <label data-error="wrong" data-success="right" for="form32">Telefonszám</label>
+                <input type="tel" id="form35" name="PhoneNumber" class="form-control" required>
+                <label data-error="wrong" data-success="right" for="form35">Telefonszám</label>
               </div>
-
               <div class="md-form mb-5">
                 <i class="fas fa-envelope prefix grey-text"></i>
                 <input type="email" id="form29" name="email" class="form-control validate">
                 <label data-error="wrong" data-success="right" for="form29">E-mail</label>
               </div>
-
             </div>
             <div class="modal-footer d-flex justify-content-center">
               <button type="submit" class="btn btn-success">Mentés <i class="fas fa-paper-plane-o ml-1"></i></button>
@@ -282,7 +256,6 @@
       <footer id="footer" class="container-fluid bg-light">
           <div class="row">
               <p>Linamar PPM</p>
-
            </div>
       </footer>
   </body>

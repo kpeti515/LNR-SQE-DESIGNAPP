@@ -8,7 +8,9 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/server.js"
+            "args": ["dotenv_config_path=config/.env"],
+            "program": "${workspaceFolder}/server.js",
+            "runtimeArgs": ["-r", "dotenv/config"]
         },
         {
             "type": "chrome",

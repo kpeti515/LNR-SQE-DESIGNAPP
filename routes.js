@@ -28,7 +28,7 @@ router.get('/tanusitvanyok', (req, res) => res.render('tanusitvanyok'))
 router.post('/contacts', async (req, res) => {
   const result = await axios.post('/api/contacts', req.body)
   console.log(result)
-  res.redirect('/')
+  res.redirect('/beszallitok')
 })
 
 module.exports = router

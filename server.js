@@ -1,12 +1,15 @@
+// require('dotenv').config()
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const routes = require('./routes')
 const api = require('./api')
+const port = process.env.PORT
+const database = process.env.DATABASE
 
 // Initialize DB connection
 const MongoClient = require('mongodb').MongoClient
-const url = 'mongodb+srv://Kpeti515:P2peters@backendtest-sxxo1.mongodb.net/test?retryWrites=true&w=majority'
+const url = database
 const dbClient = new MongoClient(url, { useUnifiedTopology: true })
 
 const start = async () => {
@@ -20,7 +23,7 @@ const start = async () => {
     app.use(bodyParser.json())
     app.use('/', routes)
     app.use('/api', api({ db }))
-    app.listen(3000, () => console.log('listening on port: 3000'))
+    app.listen(port, () => console.log(`Listening on port ${port}!`))
   } catch (error) {
     console.error(error)
   }
