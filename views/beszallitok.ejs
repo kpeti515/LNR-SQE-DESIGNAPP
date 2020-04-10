@@ -1,33 +1,44 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
   <head>
-      <meta charset="utf-8" />
-      <meta name="author" content="Lorand Kallai" />
-      <meta name="description" content="Supplier Quality Documents" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta name="keywords" content="html,html5,web development" />
-      <title>PPM Supplier Quality Database</title>
-      <link rel="icon" href="img/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta name="author" content="Lorand Kallai" />
+    <meta name="description" content="Supplier Quality Documents" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="html,html5,web development" />
+    <title>PPM Supplier Quality Database</title>
+    <link rel="icon" href="img/favicon.ico" />
 
-      <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-      <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>      
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>      <script type="text/javascript" src="js/DataTables/datatables.min.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-      <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
-      <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
-      <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
-      <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.bootstrap4.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.bootstrap4.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.bootstrap4.min.css"/>
+    <link rel="stylesheet" href="css/overwrites.css">
 
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
-      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.colVis.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
           <!-- Brand -->
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="/">
               <img src="img/LinamarLogo.png" class="img-fluid" style="max-width: 150px" alt="Responsive image">
           </a>
 
@@ -59,204 +70,185 @@
             </li>
           </ul>
         </nav>
-  </header>
-        <script>
-        $(document).ready(function() {
-          var table = $('#contacts').DataTable( {
-              orderCellsTop: true,
-              fixedHeader: true,
-              pagingType: "full_numbers",
-              dom: 'lBfrtip',
-              "ajax": {
-                "url":'/api/contacts',
-                "dataSrc": ""},
-                
-              columns: [
-                        {
-                          "data": "Supplier"
-                        },
-                        {
-                          "data": "Project"
-                        },
-                        {
-                          "data": "ContactName"
-                        },
-                        {
-                          "data": "Position"
-                        },
-                        {
-                          "data": "PhoneNumber"
-                        },
-                        {
-                          "data": "email"
-                        }
-                      ],
-              initComplete: function () {
-              this.api().columns().every(function () {
-              var column = this
-              var select = $('<select><option value=""></option></select>')
-                  .appendTo($(column.footer()).empty())
-                  .on('change', function () {
-                      var val = $.fn.dataTable.util.escapeRegex(
-                          $(this).val()
-                      )
+  	</header>
+    <script>
+    $(document).ready(function() {
+      var table = $('#contacts').DataTable( {
+          orderCellsTop: true,
+          fixedHeader: true,
+          pagingType: "full_numbers",
+          dom: 'lBfrtip',
+          "ajax": {
+            "url":'/api/contacts',
+            "dataSrc": ""},
+            
+          columns: [
+                    {"data": "ContactName"},
+                    {"data": "Project"},
+                    {"data": "Supplier"},
+                    {"data": "Position"},
+                    {"data": "PhoneNumber"},
+                    {"data": "email"}
+                  ],
+          initComplete: function () {
+          this.api().columns().every(function () {
+          var column = this
+          var select = $('<select><option value=""></option></select>')
+              .appendTo($(column.footer()).empty())
+              .on('change', function () {
+                  var val = $.fn.dataTable.util.escapeRegex(
+                      $(this).val()
+                  )
 
-                      column
-                          .search(val ? '^' + val + '$' : '', true, false)
-                          .draw()
-                  })
-
-              column.data().unique().sort().each(function (d, j) {
-                  select.append('<option value="' + d + '">' + d + '</option>')
+                  column
+                      .search(val ? '^' + val + '$' : '', true, false)
+                      .draw()
               })
-          })
-              },
-              language: {
-              sEmptyTable: "Nincs rendelkezésre álló adat",
-              sInfo: "Találatok: _START_ - _END_ Összesen: _TOTAL_",
-              sInfoEmpty: "Nulla találat",
-              sInfoFiltered: "(_MAX_ összes rekord közül szűrve)",
-              sInfoPostFix: "",
-              sInfoThousands: " ",
-              sLengthMenu: "_MENU_ találat oldalanként",
-              sLoadingRecords: "Betöltés...",
-              sProcessing: "Feldolgozás...",
-              sSearch: "Keresés:",
-              sZeroRecords: "Nincs a keresésnek megfelelő találat",
-              oPaginate: {
-                  sFirst: "Első",
-                  sPrevious: "Előző",
-                  sNext: "Következő",
-                  sLast: "Utolsó"
-              },
-              oAria: {
-                  sSortAscending: ": aktiválja a növekvő rendezéshez",
-                  sSortDescending: ": aktiválja a csökkenő rendezéshez"
-              },
-              select: {
-                  rows: {
-                      _: "%d sor kiválasztva",
-                      0: "",
-                      1: "1 sor kiválasztva"
-                  }
-              },
 
-              buttons: {
-                  print: "Nyomtatás",
-                  extend: 'excel',
-                  text: 'Save current page',
-                  exportOptions: {
-                  modifier: {
-                    page: 'current'
-                    }
-                  },
-                  colvis: "Oszlopok",
-                  copy: "Másolás",
-                  copyTitle: "Vágólapra másolás",
-                  copySuccess: {
-                      _: "%d sor másolva",
-                      1: "1 sor másolva"
-                  }
+          column.data().unique().sort().each(function (d, j) {
+              select.append('<option value="' + d + '">' + d + '</option>')
+          })
+      })
+          },
+          language: {
+          sEmptyTable: "Nincs rendelkezésre álló adat",
+          sInfo: "Találatok: _START_ - _END_ Összesen: _TOTAL_",
+          sInfoEmpty: "Nulla találat",
+          sInfoFiltered: "(_MAX_ összes rekord közül szűrve)",
+          sInfoPostFix: "",
+          sInfoThousands: " ",
+          sLengthMenu: "_MENU_ találat oldalanként",
+          sLoadingRecords: "Betöltés...",
+          sProcessing: "Feldolgozás...",
+          sSearch: "Keresés:",
+          sZeroRecords: "Nincs a keresésnek megfelelő találat",
+          oPaginate: {
+              sFirst: "Első",
+              sPrevious: "Előző",
+              sNext: "Következő",
+              sLast: "Utolsó"
+          },
+          oAria: {
+              sSortAscending: ": aktiválja a növekvő rendezéshez",
+              sSortDescending: ": aktiválja a csökkenő rendezéshez"
+          },
+          select: {
+              rows: {
+                  _: "%d sor kiválasztva",
+                  0: "",
+                  1: "1 sor kiválasztva"
               }
-            },
-              buttons: [
-              'excel', 'pdf', 'print'
-              ]
-          })
-          $(".buttons-excel, .buttons-pdf, .buttons-print").removeClass("btn-secondary").addClass("btn-success")
-          $('div#contacts_filter').find('LABEL').attr('style', 'display:flex;');
-        })
-      </script>
-        <table id="contacts" class="display tg table table-hover table-bordered" style="width:100%">
-          <thead>
-            <tr>
-              <th>Beszállító</th>
-              <th>Projekt</th>
-              <th>Kontakt név</th>
-              <th>Beosztás</th>
-              <th>Telefonszám</th>
-              <th>E-mail</th>
-            </tr>
-          </thead>
-          <tfoot>
-            <tr>
-              <th>Beszállító</th>
-              <th>Projekt</th>
-              <th>Kontakt név</th>
-              <th>Beosztás</th>
-              <th>Telefonszám</th>
-              <th>E-mail</th>
-            </tr>
-          </tfoot>
-        </table>
-
-  <form action="/contacts" method="post">
-        <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header text-center">
-              <h4 class="modal-title w-100 font-weight-bold">Adatok megadása</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body mx-3">
-              <div class="md-form mb-5">
-                <i class="fas fa-building prefix grey-text"></i>
-                <input type="text" id="form31" name="Supplier" class="form-control" required>
-                <label data-error="wrong" data-success="right" for="form31">Beszállító</label>
-              </div>
-              <div class="md-form mb-5">
-                <i class="fas fa-project-diagram prefix grey-text"></i>
-                <input type="text" id="form32" name="Project" class="form-control" required>
-                <label data-error="wrong" data-success="right" for="form32">Projekt</label>
-              </div>
-              <div class="md-form mb-5">
-                <i class="fas fa-user prefix grey-text"></i>
-                <input type="text" id="form33" name="ContactName" class="form-control" required>
-                <label data-error="wrong" data-success="right" for="form33">Kontakt név</label>
-              </div>
-              <div class="md-form mb-5">
-                <i class="fas fa-user-graduate prefix grey-text"></i>
-                <input type="text" id="form34" name="Position" class="form-control" required>
-                <label data-error="wrong" data-success="right" for="form34">Beosztás</label>
-              </div>
-              <div class="md-form mb-5">
-                <i class="fas fa-phone-alt prefix grey-text"></i>
-                <input type="tel" id="form35" name="PhoneNumber" class="form-control" required>
-                <label data-error="wrong" data-success="right" for="form35">Telefonszám</label>
-              </div>
-              <div class="md-form mb-5">
-                <i class="fas fa-envelope prefix grey-text"></i>
-                <input type="email" id="form29" name="email" class="form-control validate">
-                <label data-error="wrong" data-success="right" for="form29">E-mail</label>
-              </div>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-              <button type="submit" class="btn btn-success">Mentés <i class="fas fa-paper-plane-o ml-1"></i></button>
-              <button class="btn btn-danger" class="close"  data-dismiss="modal" aria-label="Close" onclick="modalReset()">Mégse <i class="fas fa-paper-plane-o ml-1"></i></button>
-            </div>
-          </div>
-          </div>
-        </div>
-  </form>
-        <script>
-          function modalReset() {
-            $(':input').val('');
+          },
+          buttons: {
+              print: "Nyomtatás",
+              extend: 'excel',
+              text: 'Save current page',
+              exportOptions: {
+              modifier: {
+                page: 'current'
+                }
+              },
+              colvis: "Oszlopok",
+              copy: "Másolás",
+              copyTitle: "Vágólapra másolás",
+              copySuccess: {
+                  _: "%d sor másolva",
+                  1: "1 sor másolva"
+              }
           }
-          </script>
-        <button class="btn btn-primary btn-lg" role="button" aria-pressed="true" data-toggle="modal" data-target="#modalContactForm">Új kontakt hozzáadása</button>
+        },
+          buttons: ['excel', 'pdf', 'print']
+      })
+      $(".buttons-excel, .buttons-pdf, .buttons-print").removeClass("btn-secondary").addClass("btn-success")
+      $('div#contacts_filter').find('LABEL').attr('style', 'display:flex;')
+    })
+    </script>
+		<table id="contacts" class="display tg table table-hover table-bordered" style="width:100%">
+			<thead>
+				<tr>
+					<th>Kontakt neve</th>
+					<th>Projekt</th>
+					<th>Cég</th>
+					<th>Beosztás</th>
+					<th>Telefonszám</th>
+					<th>E-mail</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<th>Kontakt neve</th>
+					<th>Projekt</th>
+					<th>Cég</th>
+					<th>Beosztás</th>
+					<th>Telefonszám</th>
+					<th>E-mail</th>
+				</tr>
+			</tfoot>
+		</table>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >Új kontakt</button>
 
-
-        <a href="#" class="btn btn-primary btn-lg btn-warning" role="button" aria-pressed="true">Kontakt módosítása</a>
-        <a href="#" class="btn btn-primary btn-lg btn-danger" role="button" aria-pressed="true">Kontakt törlése</a>
-
-
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Kontakt adatai</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form action="/contacts" method="post">
+						<div class="modal-body">
+							<div class="input-group input-group-sm mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text justify-content-center" id="ContactNameLabel">Kontakt neve</span>
+								</div>
+								<input type="text" name="ContactName" id="ContactName" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Valamilyen valaki">
+							</div>
+							<div class="input-group input-group-sm mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text justify-content-center" id="inputGroup-sizing-sm">Projekt</span>
+								</div>
+								<input type="text" name="Project" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Volvo 5260">
+							</div>
+							<div class="input-group input-group-sm mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text justify-content-center" id="inputGroup-sizing-sm">Cég</span>
+								</div>
+								<input type="text" name="Supplier" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Aapico">
+							</div>
+							<div class="input-group input-group-sm mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text justify-content-center" id="inputGroup-sizing-sm">Beosztás</span>
+								</div>
+								<input type="text" name="Position" id="Position" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Quality Egineer / Project manager">
+							</div>
+							<div class="input-group input-group-sm mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text justify-content-center" id="inputGroup-sizing-sm">Telefonszám</span>
+								</div>
+								<input type="text" name="PhoneNumber" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="+36 20 789 4589">
+							</div>
+							<div class="input-group input-group-sm mb-3">
+								<div class="input-group-prepend">
+									<span class="input-group-text justify-content-center" id="inputGroup-sizing-sm">E-mail</span>
+								</div>
+								<input type="text" name="email" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="valamilyen@valaki.com">
+							</div>
+						</div>
+						<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="modalReset()">Mégse</button>
+						<button type="submit" class="btn btn-primary">Mentés</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		</div>
       <footer id="footer" class="container-fluid bg-light">
           <div class="row">
               <p>Linamar PPM</p>
            </div>
       </footer>
+      <script type="text/javascript" src="js/modifiers.js"></script>
   </body>
 </html>
