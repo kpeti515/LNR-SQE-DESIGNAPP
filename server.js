@@ -2,8 +2,8 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-const routes = require('./routes')
-const api = require('./api')
+const routes = require('./src/routes')
+const api = require('./src/api')
 const port = process.env.PORT
 const database = process.env.DATABASE
 
